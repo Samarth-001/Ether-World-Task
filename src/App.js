@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import Loginform from './components/Loginform.js'
 
 function App() {
-  const adminUser = {
+  const [adminUser, setAdminUser] = useState([{
     email: "admin@admin.com",
     password: "admin123",
-  };
+  }]);
 
   const [user, setUser] = useState({ name: "", email: "" });
   const [error, setError] = useState("");
@@ -23,8 +23,20 @@ function App() {
       setError("");
 
     }else{
-      setError("Details do not match");
+      setError("No account found. Use right credentials or Signup");
     }
+  }
+
+  const Signup = newuser => {
+    console.log(newuser);
+    setAdminUser([
+      ...adminUser, {email: newuser.email, password: newuser.password}
+    ]);
+    setUser({
+      name : newuser.name,
+      email : newuser.email
+    });
+    console.log(adminUser);
   }
 
   const Logout= () => {
@@ -41,7 +53,7 @@ function App() {
             <button onClick={Logout}>Logout</button>
           </div>
         ): (
-          <Loginform Login={Login} error={error}/>
+          <Loginform Login={Login} error={error} Signup={Signup}/>
         )}
       </div>
     </>

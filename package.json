@@ -17,6 +17,11 @@
     "test": "nw-react-scripts test",
     "eject": "nw-react-scripts eject"
   },
+  "window":{
+    "title": "Avarch Task",
+    "width": 1920,
+    "height": 1080
+  },
   "eslintConfig": {
     "extends": [
       "nw-react-app",
